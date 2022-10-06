@@ -1,22 +1,15 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe Category, type: :model do
-#   before :each do
-#     @user = User.new(name: 'test', email: 'test@gmail.com')
-#     @category = category.new(name: 'category', icon: 'category icon', user: @user)
-#   end
-# end
-
-# #   it 'shows exact name' do
-# #     expect(@category.name).to eql('category')
-# #     expect(@category.icon).to eql('category icon')
-# #   end
-#   # it 'can not create a group without  a name' do
-#   #   group = Group.create(icon: 'group icon', name: nil, user: @user.id)
-#   #   expect(group).to_not be_valid
-#   # end
-#   # it 'can not create a group without  an icon' do
-#   #   group = Group.create(name: 'group ', icon: nil, user: @user.id)
-#   #   expect(group).to_not be_valid
-#   # end
-# # end
+describe Category, type: :model do
+  before :each do
+    @user = User.create(name: 'Test', email: "test@example.com", password: 123456, password_confirmation: 123456)
+  end
+  it 'should be invalid without the icon' do
+    category = Category.create(name: 'Test', icon: nil, user_id: @user.id)
+    expect(category).to_not be_valid
+  end
+  it 'should be valid' do
+    category = Category.create(name: 'Test', icon: 'icon', user_id: @user.id)
+    expect(category).to be_valid
+  end
+end

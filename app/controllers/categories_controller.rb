@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   def create
     @user = current_user
     @category = @user.categories.new(category_params)
-    if @@category.save
+    if @category.save
     flash[:notice] = "#{@category.name} created successfully!"
     redirect_to category_index_path
   else

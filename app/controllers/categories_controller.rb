@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  
+
   def index; end
   before_action :authenticate_user!, except: :index
 
